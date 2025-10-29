@@ -1,20 +1,7 @@
-import {getRandomInRange} from './js/util.js';
+import {getRandomInRange} from './util.js';
 
 const PHOTO_COUNT = 25;
 const MAX_COMMENTS = 20;
-
-const photos = [];
-const comments = [];
-
-const Likes = {
-  min: 15,
-  max: 200
-};
-
-const Avatar = {
-  min: 1,
-  max: 6
-};
 
 const NAMES = ['Артем', 'Роман', 'Мария', 'Дмитрий', 'София', 'Иван', 'Анна', 'Кирилл', 'Ольга', 'Алексей', 'Екатерина'];
 
@@ -34,6 +21,15 @@ const DESCRIPTIONS = [
   'Поймала момент.',
   'В тишине своих мыслей.'];
 
+const Likes = {
+  min: 15,
+  max: 200
+};
+
+const Avatar = {
+  min: 1,
+  max: 6
+};
 
 const addComment = (index) => ({
   id: index,
@@ -43,9 +39,13 @@ const addComment = (index) => ({
 });
 
 const addComments = () => {
-  for (let i = 0; i < MAX_COMMENTS; i++) {
+  const comments = [];
+  const commentsCount = getRandomInRange(0, MAX_COMMENTS);
+  for (let i = 0; i < commentsCount; i++) {
     comments.push(addComment(i));
   }
+
+  return comments;
 };
 
 const addPhoto = (index) => ({
@@ -57,10 +57,12 @@ const addPhoto = (index) => ({
 });
 
 const addPhotos = () => {
+  const photos = [];
   for (let i = 0; i < PHOTO_COUNT; i++) {
     photos.push(addPhoto(i));
   }
+
+  return photos;
 };
 
-const exportPhotos = addPhotos();
-export {exportPhotos};
+export {addPhotos};
