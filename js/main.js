@@ -1,5 +1,6 @@
-import './util.js';
-import {addPhotos} from './data.js';
+import {exportPhotos} from './data.js';
 import {renderThumbnails} from './pictures.js';
 
-renderThumbnails(addPhotos());
+
+renderThumbnails(exportPhotos);
+

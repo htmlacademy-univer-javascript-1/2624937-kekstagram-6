@@ -56,7 +56,7 @@ const addPhoto = (index) => ({
   comments: addComments()
 });
 
-const addPhotos = () => {
+const createPhotos = () => {
   const photos = [];
   for (let i = 0; i < PHOTO_COUNT; i++) {
     photos.push(addPhoto(i));
@@ -65,4 +65,6 @@ const addPhotos = () => {
   return photos;
 };
 
-export {addPhotos};
+const exportPhotos = createPhotos();
+
+export { exportPhotos };
