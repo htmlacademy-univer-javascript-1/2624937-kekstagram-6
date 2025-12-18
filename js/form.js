@@ -11,7 +11,7 @@ const uploadFileInput = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancel = uploadForm.querySelector('#upload-cancel');
 const body = document.body;
-
+const previewImage = uploadForm.querySelector('.img-upload__preview img');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
 
@@ -32,10 +32,6 @@ function onClickOutside(evt, inner, close) {
     close();
   }
 }
-
-/* ---------------------------
-      ВАЛИДАЦИЯ PRISTINE
------------------------------ */
 
 const normalizeHashtags = (value) =>
   value.trim()
@@ -169,11 +165,20 @@ const showMessage = (template) => {
 
 
 uploadFileInput.addEventListener('change', () => {
+  const file = uploadFileInput.files[0];
+  if (!file) {
+    return;
+  }
+
+  const imageUrl = URL.createObjectURL(file);
+  previewImage.src = imageUrl;
+
   openUploadForm();
 
   resetScale = initScale(uploadForm);
   resetEffects = initEffects(uploadForm);
 });
+
 
 uploadCancel.addEventListener('click', () => {
   closeUploadForm();
